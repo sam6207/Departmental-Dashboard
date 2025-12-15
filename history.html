@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>History | SLMS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+/* ---------- BODY ---------- */
+body{
+  background:#f4f6f9;
+}
+
+/* ---------- HEADER ---------- */
+.header{
+  background:#2f3639;
+  color:#f1d6a3;
+  padding:18px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.header h2{
+  font-weight:600;
+}
+
+/* ---------- CONTAINER ---------- */
+.container{
+  padding:35px;
+}
+
+/* ---------- CARD ---------- */
+.card{
+  background:#fff;
+  border-radius:25px;
+  padding:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+
+/* ---------- TITLE ---------- */
+.card h3{
+  margin-bottom:20px;
+  font-size:24px;
+}
+
+/* ---------- TABLE ---------- */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:14px;
+  text-align:left;
+  border-bottom:1px solid #ddd;
+  font-size:15px;
+}
+
+th{
+  background:#f3f3f3;
+}
+
+/* ---------- STATUS ---------- */
+.status{
+  padding:6px 14px;
+  border-radius:15px;
+  font-size:13px;
+  color:#fff;
+}
+
+.approved{ background:#2ecc71; }
+.rejected{ background:#e74c3c; }
+.pending{ background:#f39c12; }
+
+/* ---------- FOOTER ---------- */
+.note{
+  margin-top:15px;
+  font-size:13px;
+  color:#777;
+  text-align:right;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ---------- HEADER ---------- -->
+<div class="header">
+  <span>SLMS - Department of Computer Science</span>
+  <h2>History</h2>
+  <span>Batch: 2023–2026</span>
+</div>
+
+<!-- ---------- CONTENT ---------- -->
+<div class="container">
+  <div class="card">
+
+    <h3>Student Leave / Attendance History</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Student Name</th>
+          <th>Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="historyTable">
+        <!-- JS se data fill hoga -->
+      </tbody>
+    </table>
+
+    <div class="note">Showing maximum 20 students</div>
+  </div>
+</div>
+
+<script>
+const historyData = [
+ {date:"01-Nov-2025", name:"Aman Kumar", type:"Leave", status:"Approved"},
+ {date:"02-Nov-2025", name:"Riya Singh", type:"Leave", status:"Rejected"},
+ {date:"03-Nov-2025", name:"Rohit Verma", type:"Attendance", status:"Pending"},
+ {date:"04-Nov-2025", name:"Pooja Kumari", type:"Leave", status:"Approved"},
+ {date:"05-Nov-2025", name:"Ankit Sharma", type:"Leave", status:"Approved"},
+ {date:"06-Nov-2025", name:"Neha Gupta", type:"Attendance", status:"Pending"},
+ {date:"07-Nov-2025", name:"Saurav Yadav", type:"Leave", status:"Rejected"},
+ {date:"08-Nov-2025", name:"Kajal Singh", type:"Leave", status:"Approved"},
+ {date:"09-Nov-2025", name:"Ravi Raj", type:"Attendance", status:"Approved"},
+ {date:"10-Nov-2025", name:"Shivam Mishra", type:"Leave", status:"Pending"},
+ {date:"11-Nov-2025", name:"Nisha Kumari", type:"Leave", status:"Approved"},
+ {date:"12-Nov-2025", name:"Vikas Verma", type:"Attendance", status:"Rejected"},
+ {date:"13-Nov-2025", name:"Aarti Patel", type:"Leave", status:"Approved"},
+ {date:"14-Nov-2025", name:"Pankaj Yadav", type:"Leave", status:"Pending"},
+ {date:"15-Nov-2025", name:"Monika Singh", type:"Leave", status:"Approved"},
+ {date:"16-Nov-2025", name:"Karan Gupta", type:"Attendance", status:"Approved"},
+ {date:"17-Nov-2025", name:"Suman Devi", type:"Leave", status:"Rejected"},
+ {date:"18-Nov-2025", name:"Rajeev Kumar", type:"Leave", status:"Approved"},
+ {date:"19-Nov-2025", name:"Sneha Roy", type:"Attendance", status:"Pending"},
+ {date:"20-Nov-2025", name:"Deepak Sharma", type:"Leave", status:"Approved"}
+];
+
+const table = document.getElementById("historyTable");
+
+historyData.forEach((item, index)=>{
+  let statusClass="pending";
+  if(item.status==="Approved") statusClass="approved";
+  if(item.status==="Rejected") statusClass="rejected";
+
+  table.innerHTML += `
+    <tr>
+      <td>${index+1}</td>
+      <td>${item.date}</td>
+      <td>${item.name}</td>
+      <td>${item.type}</td>
+      <td><span class="status ${statusClass}">${item.status}</span></td>
+    </tr>
+  `;
+});
+</script>
+
+</body>
+</html>
